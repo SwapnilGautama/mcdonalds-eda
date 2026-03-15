@@ -286,7 +286,7 @@ elif page == "🏪 Outlet Analytics":
         with col3:
             st.markdown('<div class="section-header">Revenue vs Cost Price</div>', unsafe_allow_html=True)
             fig3 = px.scatter(df_store_f, x="Cost_Price", y="Revenue", color="Ownership_Type",
-                              hover_name="Store_Name", trendline="ols",
+                              hover_name="Store_Name",
                               color_discrete_sequence=MCD_COLORS,
                               labels={"Cost_Price":"Cost Price (mn INR)","Revenue":"Revenue (mn INR)"})
             st.plotly_chart(plot_fig(fig3), use_container_width=True)
@@ -366,7 +366,7 @@ elif page == "🏪 Outlet Analytics":
         sort_col = st.selectbox("Sort by", ["Revenue","Profits","Customers"], key="sort_full")
         display = df_store_f[show_cols].sort_values(sort_col, ascending=False).reset_index(drop=True)
         display.index += 1
-        st.dataframe(display.style.background_gradient(subset=["Revenue","Profits"], cmap="Reds")
+        st.dataframe(display.style
                      .format({"Revenue":"{:.3f}","Profits":"{:.3f}","Gross_Profit_Margin":"{:.2f}%"}),
                      use_container_width=True, height=500)
 
@@ -491,7 +491,7 @@ elif page == "🥗 Menu & Nutrition":
             st.plotly_chart(plot_fig(fig, 400), use_container_width=True)
 
             st.info(f"On average, Crispy variants have **{comp_df['Pct_More'].mean():.0f}% more fat** than their Grilled equivalents.")
-            st.dataframe(comp_df.style.background_gradient(subset=["Fat_Diff"], cmap="RdYlGn_r")
+            st.dataframe(comp_df.style
                          .format({"Grilled_Fat":"{:.1f}g","Crispy_Fat":"{:.1f}g",
                                    "Fat_Diff":"+{:.1f}g","Pct_More":"{:.1f}%"}),
                          use_container_width=True)
