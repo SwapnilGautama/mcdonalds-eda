@@ -110,15 +110,6 @@ section[data-testid="stSidebar"] * { color: #f5f5f5 !important; }
 """, unsafe_allow_html=True)
 
 # ─── Plotly theme ─────────────────────────────────────────────────────────────
-PLOTLY_TEMPLATE = dict(
-    layout=go.Layout(
-        paper_bgcolor="#1a1a1a", plot_bgcolor="#1a1a1a",
-        font=dict(color="#f5f5f5", family="DM Sans"),
-        xaxis=dict(gridcolor="#2a2a2a", linecolor="#333"),
-        yaxis=dict(gridcolor="#2a2a2a", linecolor="#333"),
-        colorway=["#DA291C","#FFC72C","#FF6B35","#4ECDC4","#95E1D3","#F38181","#A8E6CF"],
-    )
-)
 MCD_COLORS = ["#DA291C","#FFC72C","#FF6B35","#4ECDC4","#95E1D3","#F38181","#A8E6CF","#FFD93D","#6BCB77"]
 
 # ─── Data ────────────────────────────────────────────────────────────────────
@@ -164,8 +155,16 @@ def kpi_card(label, value, sub=""):
     </div>"""
 
 def plot_fig(fig, height=380):
-    fig.update_layout(template=None, **PLOTLY_TEMPLATE["layout"], height=height,
-                      margin=dict(l=20,r=20,t=40,b=20))
+    fig.update_layout(
+        template=None,
+        paper_bgcolor="#1a1a1a",
+        plot_bgcolor="#1a1a1a",
+        font=dict(color="#f5f5f5", family="DM Sans"),
+        xaxis=dict(gridcolor="#2a2a2a", linecolor="#333"),
+        yaxis=dict(gridcolor="#2a2a2a", linecolor="#333"),
+        height=height,
+        margin=dict(l=20, r=20, t=40, b=20),
+    )
     return fig
 
 
